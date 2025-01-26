@@ -6,12 +6,12 @@
 
 
 ### Team Members
-- Member 1: [JONU] - [VIDYA ACADEMY OF SCIENCE AND TECHNOLOGY]
-- Member 2: [FATHIMA] - [VIDYA ACADEMY OF SCIENCE AND TECHNOLOGY]
-- Member 3: [AYISHA] - [VIDYA ACADEMY OF SCIENCE AND TECHNOLOGY]
+- Member 1: JONU - VIDYA ACADEMY OF SCIENCE AND TECHNOLOGY
+- Member 2: FATHIMA - VIDYA ACADEMY OF SCIENCE AND TECHNOLOGY
+- Member 3: AYISHA - VIDYA ACADEMY OF SCIENCE AND TECHNOLOGY
 
 ### Hosted Project Link
-[mention your project hosted project link here]
+https://jonu89.github.io/expense/
 
 ### Project Description
 [2-3 lines about what your project does]
