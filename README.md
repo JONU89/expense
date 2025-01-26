@@ -2,7 +2,7 @@
 
 
 ## Basic Details
-### Team Name: [BUDDIES]
+### Team Name: BUDDIES
 
 
 ### Team Members
@@ -57,12 +57,10 @@ For Software:
 
 # Screenshots (Add at least 3)
 
-https://drive.google.com/file/d/1lTCBanNikuOQjILf97gVXczDGTozeLaf/view?usp=drive_link
+<img width = "1280" alt = "readme-banner" src="11.png">
+<img width = "1280" alt = "readme-banner" src="22.png">
+<img width = "1280" alt = "readme-banner" src="33.png">
 
-*Add caption explaining what this shows*
-
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
