@@ -1,14 +1,14 @@
-# [Project Name] 🎯
+# EXPENSE TRACKER 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: [BUDDIES]
 
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Member 1: [JONU] - [VIDYA ACADEMY OF SCIENCE AND TECHNOLOGY]
+- Member 2: [FATHIMA] - [VIDYA ACADEMY OF SCIENCE AND TECHNOLOGY]
+- Member 3: [AYISHA] - [VIDYA ACADEMY OF SCIENCE AND TECHNOLOGY]
 
 ### Hosted Project Link
 [mention your project hosted project link here]
