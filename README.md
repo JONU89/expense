@@ -53,9 +53,9 @@ For Software:
 <img width = "1280" alt = "readme-banner" src="33.png">
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- JONU: INNOVATION OF IDEA AND STYLES
+- FATHIMA:CODING 
+- AYISHA: DESIGNING
 
 ---
 Made with ❤️ at TinkerHub
