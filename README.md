@@ -41,16 +41,24 @@ For Software:
 [commands]
 
 # Run
-[commands]
+[updateTotalAmount();
+showExpenseForm('category_name');
+addExpense();
+cancelExpense();
+viewExpensesByDate();
+openSlide();
+closeSlide();
+
+
+
 
 ### Project Documentation
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
 
-![Screenshot2](Add screenshot 2 here with proper name)
+https://drive.google.com/file/d/1lTCBanNikuOQjILf97gVXczDGTozeLaf/view?usp=drive_link
+
 *Add caption explaining what this shows*
 
 ![Screenshot3](Add screenshot 3 here with proper name)
