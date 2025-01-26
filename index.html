@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;600&family=Times+New+Roman&display=swap" rel="stylesheet">
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(145deg, #e8c9f5, #f7f7f7);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: scroll;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: #9b59b6;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .balance-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: #9b59b6;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            flex: 1;
+            margin: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        .card h3 {
+            font-family: 'Georgia', serif;
+            font-size: 28px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            background-color: #9b59b6;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        button:hover {
+            background-color: #8e44ad;
+            transform: scale(1.05);
+        }
+
+        .category-button {
+            font-family: 'Times New Roman', serif;
+            background-color: #fff;
+            color: #333;
+            padding: 12px 20px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .category-button:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        .category-button i {
+            color: #9b59b6; /* Purple color for icons */
+        }
+
+        .expense-form {
+            display: none;
+            margin-top: 30px;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .expense-form input {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .expense-form button {
+            margin-right: 10px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            transition: left 0.5s ease-in-out;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .slide.active {
+            left: 0;
+        }
+
+        .date-selector {
+            margin: 20px 0;
+        }
+
+        .date-selector input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        #expensesList {
+            margin-top: 20px;
+        }
+
+        #expensesList ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #expensesList li {
+            background: #f4f4f4;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #expensesList h3 {
+            font-family: 'Playfair Display', serif;
+            color: #9b59b6;
+        }
+        
+        /* Logo Styling */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-container svg {
+            width: 100px;
+            height: 100px;
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            .balance-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                width: 80%;
+                margin: 10px 0;
+            }
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container">
+    <!-- New Money Bank Logo -->
+    <div class="logo-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150">
+            <!-- Money Bank Body -->
+            <circle cx="75" cy="75" r="50" fill="#FFD700" stroke="#DAA520" stroke-width="4"/>
+            <!-- Money Bank Coin Slot -->
+            <rect x="55" y="40" width="35" height="8" fill="#DAA520"/>
+            <!-- Money Bank Handles -->
+            <circle cx="40" cy="60" r="10" fill="#FFD700" stroke="#DAA520" stroke-width="4"/>
+            <circle cx="110" cy="60" r="10" fill="#FFD700" stroke="#DAA520" stroke-width="4"/>
+            <!-- Money Bank Lid -->
+            <rect x="45" y="20" width="60" height="10" fill="#FFD700" stroke="#DAA520" stroke-width="4"/>
+            <!-- Dollar Sign on the Money Bank -->
+            <text x="75" y="90" font-family="Georgia, serif" font-size="24" fill="black" text-anchor="middle" alignment-baseline="middle">$</text>
+            <!-- Text label -->
+            <text x="75" y="130" font-family="Playfair Display, serif" font-size="16" fill="#9b59b6" text-anchor="middle" alignment-baseline="middle">Expense Tracker</text>
+        </svg>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+        <div class="container">
+            <h1>Expense Tracker</h1>
+
+            <div>
+                <label for="userTotalAmount">Enter Total Amount: </label>
+                <input type="number" id="userTotalAmount" placeholder="Enter total amount" required>
+            </div>
+
+            <div class="balance-container">
+                <div class="card">
+                    <h3>Total Amount</h3>
+                    <p id="totalAmount">0</p>
+                </div>
+                <div class="card">
+                    <h3>Expenses</h3>
+                    <p id="totalExpenses">0</p>
+                </div>
+                <div class="card">
+                    <h3>Balance</h3>
+                    <p id="balance">0</p>
+                </div>
+            </div>
+
+            <div class="expense-container">
+                <button class="category-button" onclick="showExpenseForm('shopping')"><i class="fas fa-shopping-cart"></i> Shopping</button>
+                <button class="category-button" onclick="showExpenseForm('food')"><i class="fas fa-utensils"></i> Food</button>
+                <button class="category-button" onclick="showExpenseForm('transportation')"><i class="fas fa-car"></i> Transportation</button>
+                <button class="category-button" onclick="showExpenseForm('health')"><i class="fas fa-heartbeat"></i> Health</button>
+                <button class="category-button" onclick="showExpenseForm('pets')"><i class="fas fa-paw"></i> Pets</button>
+                <button class="category-button" onclick="showExpenseForm('kids')"><i class="fas fa-child"></i> Kids</button>
+                <button class="category-button" onclick="showExpenseForm('vegetables')"><i class="fas fa-leaf"></i> Vegetables</button>
+                <button class="category-button" onclick="showExpenseForm('fruits')"><i class="fas fa-apple-alt"></i> Fruits</button>
+                <button class="category-button" onclick="showExpenseForm('electronics')"><i class="fas fa-laptop"></i> Electronics</button>
+                <button class="category-button" onclick="showExpenseForm('beauty')"><i class="fas fa-magic"></i> Beauty</button>
+                <button class="category-button" onclick="showExpenseForm('education')"><i class="fas fa-book"></i> Education</button>
+            </div>
+
+            <div id="expenseForm" class="expense-form">
+                <label for="expenseAmount">Amount:</label>
+                <div style="display: flex; align-items: center;">
+                    <input type="number" id="expenseAmount" placeholder="Enter amount" required style="flex: 1; margin-right: 10px;">
+                    <button onclick="addExpense()" style="margin-right: 5px;">Add Expense</button>
+                    <button onclick="cancelExpense()">Cancel</button>
+                </div>
+            </div>
+
+            <div>
+                <button onclick="updateTotalAmount()">Update Total Amount</button>
+            </div>
+
+            <button class="slide-button" onclick="openSlide()">View Summary</button>
+        </div>
+    </div>
+
+    <!-- Slide Content for View Expenses -->
+    <div class="slide" id="slideContent">
+        <h1>View Expenses on</h1>
+        <div class="date-selector">
+            <label for="dateSelector">Select Date: </label>
+            <input type="date" id="dateSelector" onchange="viewExpensesByDate()">
+        </div>
+
+        <div id="expensesList"></div>
+        <button onclick="closeSlide()">Back to Main</button>
+    </div>
+</div>
+
+<script>
+    let totalAmount = 0;
+    let totalExpenses = 0;
+    let expenses = [];
+
+    function updateTotalAmount() {
+        totalAmount = parseFloat(document.getElementById('userTotalAmount').value);
+        if (isNaN(totalAmount) || totalAmount <= 0) {
+            alert("Please enter a valid total amount.");
+            return;
+        }
+        document.getElementById('totalAmount').textContent = totalAmount;
+        document.getElementById('balance').textContent = totalAmount - totalExpenses;
+    }
+
+    function showExpenseForm(category) {
+        document.getElementById('expenseForm').style.display = 'block';
+        document.getElementById('expenseForm').dataset.category = category;
+    }
+
+    function addExpense() {
+        let expenseAmount = parseFloat(document.getElementById('expenseAmount').value);
+        if (isNaN(expenseAmount) || expenseAmount <= 0) {
+            alert("Please enter a valid amount.");
+            return;
+        }
+        let category = document.getElementById('expenseForm').dataset.category;
+        expenses.push({ category, amount: expenseAmount });
+
+        totalExpenses += expenseAmount;
+        document.getElementById('totalExpenses').textContent = totalExpenses;
+        document.getElementById('balance').textContent = totalAmount - totalExpenses;
+
+        alert(`${category} expense added successfully!`);
+        document.getElementById('expenseForm').reset();
+        document.getElementById('expenseForm').style.display = 'none';
+    }
+
+    function cancelExpense() {
+        document.getElementById('expenseForm').reset();
+        document.getElementById('expenseForm').style.display = 'none';
+    }
+
+    function openSlide() {
+        document.getElementById('slideContent').classList.add('active');
+    }
+
+    function closeSlide() {
+        document.getElementById('slideContent').classList.remove('active');
+    }
+
+    function viewExpensesByDate() {
+        let selectedDate = document.getElementById('dateSelector').value;
+        let filteredExpenses = expenses.filter(expense => expense.date === selectedDate);
+
+        let expensesList = document.getElementById('expensesList');
+        expensesList.innerHTML = '';
+        if (filteredExpenses.length > 0) {
+            let ul = document.createElement('ul');
+            filteredExpenses.forEach(expense => {
+                let li = document.createElement('li');
+                li.textContent = `${expense.category}: $${expense.amount}`;
+                ul.appendChild(li);
+            });
+            expensesList.appendChild(ul);
+        } else {
+            expensesList.textContent = 'No expenses found for this date.';
+        }
+    }
+</script>
+
+</body>
+</html>
